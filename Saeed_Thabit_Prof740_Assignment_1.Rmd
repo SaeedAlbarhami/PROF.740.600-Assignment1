@@ -1,0 +1,214 @@
+---
+title: "Saeed Thabit_Prof740_Assignment#1"
+author: "Saeed"
+date: "March 3, 2019"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+    df_print: paged
+  word_document:
+    toc: yes
+    toc_depth: '5'
+  html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    df_print: paged
+---
+
+<style>
+h1,h2,h3,h4 {
+  font-family: 'Raleway', sans-serif;
+}
+h1 {
+  background-color: #FF6400;
+  color: white;
+}
+</style>
+
+```{r pressure, echo=FALSE,fig.cap="", out.width = '100%'}
+#knitr::include_graphics("logo.png", auto_pdf = getOption("knitr.graphics.auto_pdf", FALSE), dpi = NULL)
+```
+
+
+\newpage
+# BACKGROUND {-}
+The purpose of this assignment is to evaluate different similarities or distance measures such as Cosine similarity, Euclidean distance, and Jaccard coefficient. In addition, in this assignment we classify various attributes of some data.
+
+
+
+# QUESTION 1: (20 Points) {-}
+
+## Given the following vectors x and y compute the cosine similarity and Euclidean. {-} 
+
+### a. x=(1,1,1,1) and y=(2,2,2,2) (10 Points) {-}    
+
+#### **Solution 1(Manual)** *Cosine Similarity:*    
+  cos(x,y) = x * y / (||x|| * ||y||)    
+  x*y = (1*2)+(1*2)+(1*2)+(1*2) =8    
+  ||x||=sqrt(1*1+1*1+1*1+1*1) =2    
+  ||y||=sqrt(2*2+2*2+2*2+2*2) =4    
+  cos(x,y)=8/sqrt(16)*sqrt(4) = 8/8 =1    
+  
+#### **Solution 2** *Cosine Similarity:* 
+```{r echo=TRUE}
+#install.packages('proxy')
+library(proxy)
+x<-c(1,1,1,1)
+y<-c(2,2,2,2)
+simil(rbind(x,y), method="cosine")
+
+```
+
+#### **Solution 1(Manual)** *Euclidean Distance:*    
+  d(x,y)=sqrt((1-2)$^{2}$+(1-2)$^{2}$+(1-2)$^{2}$+(1-2)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2    
+
+
+#### **Solution 2** *Euclidean Distance:*    
+```{r echo=FALSE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(1,1,1,1)
+y<-c(2,2,2,2)
+distance(rbind(x,y),method = "euclidean")
+```
+
+### b. x=(0,-1,0,1) and  y=(1,0,-1,0) (10 Points) {-}     
+**Manual Solution** *Cosine Similarity:*    
+  cos(x, y) = x * y / (||x|| * ||y||)
+  x* y = (0*1)+(-1*0)+(0*-1)+(1*0) =0
+  ||x||=sqrt(0*0+-1*-1+0*0+1*1) =sqrt(2)=1.414
+  ||y||=sqrt(1*1+0*0+-1*-1+0*0) =sqrt(2)=1.414
+  cos(x, y)=0/(1.414*1.414) = 0    
+   
+**Manual Solution** *Euclidean Distance:*     
+  d(x,y)=sqrt((0-1)$^{2}$+(-1-0)$^{2}$+(0-(-1))$^{2}$+(1-0)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2    
+
+
+# QUESTION 2: (20 points) {-}
+
+## Given the following binary vectors x and y compute the cosine similarity Euclidean distance, and Jaccard coefficient. {-} 
+
+### a. x=(0,1,0,1) and y=(1,0,1,0) (10 Points) {-}    
+**Manual Solution** *Cosine Similarity:*    
+  cos(x, y) = x * y / (||x|| * ||y||)    
+  x* y = (0*1)+(1*0)+(0*1)+(1*0) =0    
+  ||x||=sqrt(0*0+1*1+0*0+1*1) =sqrt(2)=1.414    
+  ||y||=sqrt(1*1+0*0+1*1+0*0) =sqrt(2)=1.414    
+  cos(x, y)=0/(1.414*1.414) = 0    
+
+**Manual Solution** *Euclidean distance:*    
+  d(x,y)=sqrt((0-1)$^{2}$+(1-0)$^{2}$+(0-1)$^{2}$+(1-0)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2
+
+**Manual Solution** *Jaccard Coefficient:*      
+  Jaccard Similarity(x,y)=0/4=0    
+
+
+### b. x=(0,1,0,1,0,1,0,0,1) and y=(0,1,0,0,1,1,0,0,0) (10 Points) {-}
+**Manual Solution** *Cosine Similarity:*    
+  cos(x, y) = x * y / (||x|| * ||y||)    
+  x* y = (0*0)+(1*1)+(0*0)+(1*0)+(0*1)+(1*1)+(0*0)+(0*0)+(1*0)=2    
+  ||x||=sqrt((0*0)+(1*1)+(0*0)+(1*1)+(0*0)+(1*1)+(0*0)+(0*0)+(1*1) =sqrt(4)=2    
+  ||y||=sqrt((0*0)+(1*1)+(0*0)+(0*0)+(1*1)+(1*1)+(0*0)+(0*0)+(0*0)) =sqrt(3)=1.732    
+  cos(x, y)=2/(2*1.732) = 2/3.464=0.577    
+
+
+**Manual Solution** *Euclidean distance:*    
+  d(x,y)=sqrt((0-0)$^{2}$+(1-1)$^{2}$+(0-0)$^{2}$+(1-0)$^{2}$+(0-1)$^{2}$+(1-1)$^{2}$+(0-0)$^{2}$+(0-0)$^{2}$+(1-0)$^{2}$)    
+=sqrt(1+1+1)=sqrt(3)= 1.732    
+
+**Manual Solution** *Jaccard Coefficient:*      
+  Jaccard Similarity(x,y)=q/q+r+t =2/5=.4   
+  
+# QUESTION 3:(20 points) {-}
+
+Classify the following attributes as binary, discrete or continuous. Also classify them as qualitative (nominal or ordinal) or quantitative (interval or ratio). 
+
+ATTRIBUTES:
+
+Example: Age in Years= Discrete, quantitative, ratio
+
+|              **ATTRIBUTE**                           |       **CLASSIFICATION**          |
+|------------------------------------------------------|-----------------------------------|
+|Time in terms of AM or PM                             |Binary, Qualitative & Ordinal      |
+|Angles measurement between 00 and 3600                |Continuous, Quantitative and Ratio |
+|Gold, Silver, Bronze medal as awarded in Olympic Games|Discrete Qualitative, Ordinal      |
+|Number of patients in hospital                        |Discrete, Quantitative & Ratio     |
+|Military rank                                         |Discrete, Qualitative & Ordinal    |
+
+
+
+# QUESTION 4: (10 points) {-}
+
+Given two objects represented by the tuples (22,1,42,10) and (20,0,36,8):
+
+## a.	Compute the Euclidean distance between the two objects {-}
+  d(x,y)=sqrt((xi1-xj1)$^{2}$+(xi1-xj1)$^{2}$+(xin-xjn)$^{2}$)
+  d(x,y)=sqrt((22-20)$^{2}$+(1-0)$^{2}$+(42-36)$^{2}$+(10-8)$^{2}$)
+  =sqrt(4+1+36+4)=sqrt(45)=6.708
+
+## b.	Compute the Manhattan distance between the two objects {-}
+  d(x,y)=|xi1-xj1|+|xi1-xj1|+|xin-xjn|
+  d(x,y)=|22-20|+|1-0|+|42-36|+|10-8|
+  d(x,y)=(2+1+6+2)=11
+
+# QUESTION 5: (30 points) {-}
+
+In this question R Studio is used. Suppose that a hospital tested the age and body fat data for 18 randomly selected adults with the following results:
+
+Age	23	23	27	27	39	41	47	49	50	52	54	56
+Fat	9.5	26.5	7.8	17.8	31.4	25.9	27.4	27.2	31.2	34.6	42.5	30.2
+
+Using R studio:
+
+## a.	Prepare an excel(csv) file {-}
+```{r echo=TRUE}
+setwd("D:/RIT/prof740welcome/week2/Lab")
+```
+## b.	Import the dataset (file) {-}
+```{r echo=TRUE}
+data <- read.csv('hospital-fat-by-age.csv')
+```
+## c.	Read the file {-}
+```{r echo=TRUE}
+ View(data)
+```
+## d.	Calculate and comment the dataset (how many observations and types of variables) {-}
+```{r echo=TRUE}
+ # To calculate the number of observations
+nrow(data) 
+# To find the types of variables
+str(data) # 'Age' is of int type and 'Fat' is of num type 
+```
+## e.	Calculate the mean and median of Age and Fat {-}
+```{r echo=TRUE}
+ # Calculating mean
+mean(data$AGE) # 40.67
+mean(data$FAT) # 26
+# Calculating median
+median(data$AGE)  # 44
+median(data$FAT)  # 27.3
+```
+## f.	Draw the plot command i.e(plot (name of dataset$variable1, name of dataset$variable2). Is the similar with the scatterplot? {-}
+```{r echo=TRUE}
+ plot(data$AGE, data$FAT, xlab = 'AGE', ylab = 'FAT', main = 'Plot command')
+ #Yes, it is similar to a scatter plot between Age and Fat
+```
+## g.	Draw the histogram for Age and Fat variables {-}
+```{r echo=TRUE}
+# Histogram for Age
+hist(data$AGE, xlab = 'AGE', main = 'Histogram of AGE')
+# Histogram for Fat
+hist(data$FAT, xlab = 'FAT', main = 'Histogram of FAT')
+```
+## h.	Draw a scatter plot for Age and Fat variables {-}
+```{r echo=TRUE}
+ library(ggplot2)
+ggplot(data, aes(x = AGE, y = FAT)) + geom_point(size=2) + ggtitle("Scatter plot of AGE and FAT")
+```
+
+^[For the step (h) you need first to upload library (ggplot2)].
