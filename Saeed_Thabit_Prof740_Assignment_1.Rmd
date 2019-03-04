@@ -3,13 +3,13 @@ title: "Saeed Thabit_Prof740_Assignment#1"
 author: "Saeed"
 date: "March 3, 2019"
 output:
+  word_document:
+    toc: yes
+    toc_depth: '5'
   pdf_document:
     toc: yes
     toc_depth: '5'
     df_print: paged
-  word_document:
-    toc: yes
-    toc_depth: '5'
   html_document:
     highlight: pygments
     number_sections: yes
@@ -31,7 +31,7 @@ h1 {
 </style>
 
 ```{r pressure, echo=FALSE,fig.cap="", out.width = '100%'}
-#knitr::include_graphics("logo.png", auto_pdf = getOption("knitr.graphics.auto_pdf", FALSE), dpi = NULL)
+knitr::include_graphics("logo.png", auto_pdf = getOption("knitr.graphics.auto_pdf", FALSE), dpi = NULL)
 ```
 
 
@@ -48,11 +48,11 @@ The purpose of this assignment is to evaluate different similarities or distance
 ### a. x=(1,1,1,1) and y=(2,2,2,2) (10 Points) {-}    
 
 #### **Solution 1(Manual)** *Cosine Similarity:*    
-  cos(x,y) = x * y / (||x|| * ||y||)    
-  x*y = (1*2)+(1*2)+(1*2)+(1*2) =8    
-  ||x||=sqrt(1*1+1*1+1*1+1*1) =2    
-  ||y||=sqrt(2*2+2*2+2*2+2*2) =4    
-  cos(x,y)=8/sqrt(16)*sqrt(4) = 8/8 =1    
+  cos(x,y) = x  $\times$  y / (||x||  $\times$  ||y||)    
+  x $\times$ y = (1 $\times$ 2)+(12)+(1 $\times$ 2)+(1 $\times$ 2) =8    
+  ||x||=sqrt(1 $\times$ 1+1 $\times$ 1+1 $\times$ 1+1 $\times$ 1) =2    
+  ||y||=sqrt(2 $\times$ 2+2 $\times$ 2+2 $\times$ 2+2 $\times$ 2) =4    
+  cos(x,y)=8/sqrt(16) $\times$ sqrt(4) = 8/8 =1    
   
 #### **Solution 2** *Cosine Similarity:* 
 ```{r echo=TRUE}
@@ -69,7 +69,7 @@ simil(rbind(x,y), method="cosine")
 
 
 #### **Solution 2** *Euclidean Distance:*    
-```{r echo=FALSE}
+```{r echo=TRUE}
 #install.packages('philentropy')
 library(philentropy)
 x<-c(1,1,1,1)
@@ -78,55 +78,133 @@ distance(rbind(x,y),method = "euclidean")
 ```
 
 ### b. x=(0,-1,0,1) and  y=(1,0,-1,0) (10 Points) {-}     
-**Manual Solution** *Cosine Similarity:*    
-  cos(x, y) = x * y / (||x|| * ||y||)
-  x* y = (0*1)+(-1*0)+(0*-1)+(1*0) =0
-  ||x||=sqrt(0*0+-1*-1+0*0+1*1) =sqrt(2)=1.414
-  ||y||=sqrt(1*1+0*0+-1*-1+0*0) =sqrt(2)=1.414
-  cos(x, y)=0/(1.414*1.414) = 0    
-   
-**Manual Solution** *Euclidean Distance:*     
+#### **Solution 1(Manual)** *Cosine Similarity:*    
+  cos(x, y) = x  $\times$  y / (||x||  $\times$  ||y||)    
+  x $\times$  y = (0  $\times$  1)+(-1 $\times$  0)+(0 $\times$  -1)+(1 $\times$  0) =0    
+  ||x||=sqrt(0 $\times$   0+-1 $\times$  -1+0 $\times$  0+1 $\times$  1) =sqrt(2)=1.414   
+  ||y||=sqrt(1 $\times$ 1+0 $\times$  0+-1 $\times$  -1+0 $\times$  0) =sqrt(2)=1.414    
+  cos(x, y)=0/(1.414 $\times$  1.414) = 0     
+  
+#### **Solution 2** *Cosine Similarity:*   
+```{r echo=TRUE}
+#install.packages('proxy')
+library(proxy)
+x<-c(0,-1,0,1)
+y<-c(1,0,-1,0)
+simil(rbind(x,y), method="cosine")
+
+```
+
+#### **Solution 1(Manual)** *Euclidean Distance:*  
   d(x,y)=sqrt((0-1)$^{2}$+(-1-0)$^{2}$+(0-(-1))$^{2}$+(1-0)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2    
+  
+#### **Solution 2** *Euclidean Distance:*   
+```{r echo=TRUE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(0,-1,0,1)
+y<-c(1,0,-1,0)
+distance(rbind(x,y),method = "euclidean")
+```
 
-
+\newpage
 # QUESTION 2: (20 points) {-}
 
 ## Given the following binary vectors x and y compute the cosine similarity Euclidean distance, and Jaccard coefficient. {-} 
 
 ### a. x=(0,1,0,1) and y=(1,0,1,0) (10 Points) {-}    
-**Manual Solution** *Cosine Similarity:*    
-  cos(x, y) = x * y / (||x|| * ||y||)    
-  x* y = (0*1)+(1*0)+(0*1)+(1*0) =0    
-  ||x||=sqrt(0*0+1*1+0*0+1*1) =sqrt(2)=1.414    
-  ||y||=sqrt(1*1+0*0+1*1+0*0) =sqrt(2)=1.414    
-  cos(x, y)=0/(1.414*1.414) = 0    
+#### **Solution 1(Manual)** *Cosine Similarity:*    
+  cos(x, y) = x $\times$ y / (||x|| $\times$ ||y||)    
+  x $\times$ y = (0 $\times$ 1)+(1 $\times$  0)+(0 $\times$  1)+(1 $\times$  0) =0    
+  ||x||=sqrt(0 $\times$  0+1 $\times$  1+0 $\times$  0+1 $\times$  1) =sqrt(2)=1.414    
+  ||y||=sqrt(1  $\times$  1+0  $\times$  0+1  $\times$  1+0  $\times$  0) =sqrt(2)=1.414    
+  cos(x, y)=0/(1.414  $\times$  1.414) = 0    
+  
+#### **Solution 2** *Cosine Similarity:*   
+```{r echo=TRUE}
+#install.packages('proxy')
+library(proxy)
+x<-c(0,1,0,1)
+y<-c(1,0,1,0)
+simil(rbind(x,y), method="cosine")
 
-**Manual Solution** *Euclidean distance:*    
-  d(x,y)=sqrt((0-1)$^{2}$+(1-0)$^{2}$+(0-1)$^{2}$+(1-0)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2
+```
 
-**Manual Solution** *Jaccard Coefficient:*      
+#### **Solution 1(Manual)** *Euclidean distance:*    
+  d(x,y)=sqrt((0-1)$^{2}$+(1-0)$^{2}$+(0-1)$^{2}$+(1-0)$^{2}$)=sqrt(1+1+1+1)=sqrt(4)=2    
+  
+#### **Solution 2** *Euclidean Distance:*   
+```{r echo=TRUE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(0,1,0,1)
+y<-c(1,0,1,0)
+distance(rbind(x,y),method = "euclidean")
+```
+\newpage
+#### **Solution 1(Manual)** *Jaccard Coefficient:*      
   Jaccard Similarity(x,y)=0/4=0    
+  
+#### **Solution 2** *Jaccard Coefficient:*   
+```{r echo=TRUE}
+#install.packages('jaccard')
 
+library(jaccard)
+x<-c(0,1,0,1)
+y<-c(1,0,1,0)
+jaccard(x,y)
+```
+^[While installing jaccard package, you may face warning like package ‘qvalue’ is not available (for R version 3.5.2)  
+Solution run the following:    
+source("https://bioconductor.org/biocLite.R")
+biocLite("qvalue")]
 
 ### b. x=(0,1,0,1,0,1,0,0,1) and y=(0,1,0,0,1,1,0,0,0) (10 Points) {-}
-**Manual Solution** *Cosine Similarity:*    
-  cos(x, y) = x * y / (||x|| * ||y||)    
-  x* y = (0*0)+(1*1)+(0*0)+(1*0)+(0*1)+(1*1)+(0*0)+(0*0)+(1*0)=2    
-  ||x||=sqrt((0*0)+(1*1)+(0*0)+(1*1)+(0*0)+(1*1)+(0*0)+(0*0)+(1*1) =sqrt(4)=2    
-  ||y||=sqrt((0*0)+(1*1)+(0*0)+(0*0)+(1*1)+(1*1)+(0*0)+(0*0)+(0*0)) =sqrt(3)=1.732    
+#### **Solution 1(Manual)** *Cosine Similarity:*    
+  cos(x, y) = x  $\times$  y / (||x||  $\times$  ||y||)    
+  x $\times$  y = (0 $\times$ 0)+(1 $\times$ 1)+(0 $\times$ 0)+(1 $\times$ 0)+(0 $\times$ 1)+(1 $\times$ 1)+(0 $\times$ 0)+(0 $\times$ 0)+(1 $\times$ 0)=2    
+  ||x||=sqrt((0 $\times$ 0)+(1 $\times$ 1)+(0 $\times$ 0)+(1 $\times$ 1)+(0 $\times$ 0)+(1 $\times$ 1)+(0 $\times$ 0)+(0 $\times$ 0)+(1 $\times$ 1) =sqrt(4)=2    
+  ||y||=sqrt((0 $\times$ 0)+(1 $\times$ 1)+(0 $\times$ 0)+(0 $\times$ 0)+(1 $\times$ 1)+(1 $\times$ 1)+(0 $\times$ 0)+(0 $\times$ 0)+(0 $\times$ 0)) =sqrt(3)=1.732    
   cos(x, y)=2/(2*1.732) = 2/3.464=0.577    
 
+#### **Solution 2** *Cosine Similarity:*   
+```{r echo=TRUE}
+#install.packages('proxy')
+library(proxy)
+x<-c(0,1,0,1,0,1,0,0,1)
+y<-c(0,1,0,0,1,1,0,0,0)
+simil(rbind(x,y), method="cosine")
 
-**Manual Solution** *Euclidean distance:*    
+```
+\newpage
+#### **Solution 1(Manual)** *Euclidean distance:*    
   d(x,y)=sqrt((0-0)$^{2}$+(1-1)$^{2}$+(0-0)$^{2}$+(1-0)$^{2}$+(0-1)$^{2}$+(1-1)$^{2}$+(0-0)$^{2}$+(0-0)$^{2}$+(1-0)$^{2}$)    
 =sqrt(1+1+1)=sqrt(3)= 1.732    
 
-**Manual Solution** *Jaccard Coefficient:*      
-  Jaccard Similarity(x,y)=q/q+r+t =2/5=.4   
+#### **Solution 2** *Euclidean Distance:*   
+```{r echo=TRUE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(0,1,0,1,0,1,0,0,1)
+y<-c(0,1,0,0,1,1,0,0,0)
+distance(rbind(x,y),method = "euclidean")
+```
+
+#### **Solution 1(Manual)** *Jaccard Coefficient:*      
+  Jaccard Similarity(x,y)=2/5=.4   
   
+#### **Solution 2** *Jaccard Coefficient:*   
+```{r echo=TRUE}
+#install.packages('jaccard')
+library(jaccard)
+x<-c(0,1,0,1,0,1,0,0,1)
+y<-c(0,1,0,0,1,1,0,0,0)
+jaccard(x,y)
+```
+\newpage
 # QUESTION 3:(20 points) {-}
 
-Classify the following attributes as binary, discrete or continuous. Also classify them as qualitative (nominal or ordinal) or quantitative (interval or ratio). 
+## Classify the following attributes as binary, discrete or continuous. Also classify them as qualitative (nominal or ordinal) or quantitative (interval or ratio). 
 
 ATTRIBUTES:
 
@@ -144,70 +222,91 @@ Example: Age in Years= Discrete, quantitative, ratio
 
 # QUESTION 4: (10 points) {-}
 
-Given two objects represented by the tuples (22,1,42,10) and (20,0,36,8):
+## Given two objects represented by the tuples (22,1,42,10) and (20,0,36,8):    
 
-## a.	Compute the Euclidean distance between the two objects {-}
-  d(x,y)=sqrt((xi1-xj1)$^{2}$+(xi1-xj1)$^{2}$+(xin-xjn)$^{2}$)
-  d(x,y)=sqrt((22-20)$^{2}$+(1-0)$^{2}$+(42-36)$^{2}$+(10-8)$^{2}$)
-  =sqrt(4+1+36+4)=sqrt(45)=6.708
+### a.	Compute the Euclidean distance between the two objects {-}    
+#### **Solution 1(Manual)** *Euclidean Distance:* 
+  d(x,y)=sqrt((xi1-xj1)$^{2}$+(xi1-xj1)$^{2}$+(xin-xjn)$^{2}$)    
+  d(x,y)=sqrt((22-20)$^{2}$+(1-0)$^{2}$+(42-36)$^{2}$+(10-8)$^{2}$)       
+  =sqrt(4+1+36+4)=sqrt(45)=6.708       
+     
+#### **Solution 2** *Euclidean Distance:*   
+```{r echo=TRUE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(22,1,42,10)
+y<-c(20,0,36,8)
+distance(rbind(x,y),method = "euclidean")
+```
 
-## b.	Compute the Manhattan distance between the two objects {-}
-  d(x,y)=|xi1-xj1|+|xi1-xj1|+|xin-xjn|
-  d(x,y)=|22-20|+|1-0|+|42-36|+|10-8|
-  d(x,y)=(2+1+6+2)=11
-
+### b.	Compute the Manhattan distance between the two objects {-}    
+#### **Solution 1(Manual)** *Manhattan Distance:*    
+  d(x,y)=|xi1-xj1|+|xi1-xj1|+|xin-xjn|    
+  d(x,y)=|22-20|+|1-0|+|42-36|+|10-8|    
+  d(x,y)=(2+1+6+2)=11        
+  
+#### **Solution 2** *Manhattan Distance:*    
+```{r echo=TRUE}
+#install.packages('philentropy')
+library(philentropy)
+x<-c(22,1,42,10)
+y<-c(20,0,36,8)
+distance(rbind(x,y),method = 'manhattan')
+```
+  
+\newpage
 # QUESTION 5: (30 points) {-}
 
-In this question R Studio is used. Suppose that a hospital tested the age and body fat data for 18 randomly selected adults with the following results:
-
+## In this question R Studio is used. Suppose that a hospital tested the age and body fat data for 18 randomly selected adults with the following results:    
 Age	23	23	27	27	39	41	47	49	50	52	54	56
 Fat	9.5	26.5	7.8	17.8	31.4	25.9	27.4	27.2	31.2	34.6	42.5	30.2
 
-Using R studio:
+Using RStudio:
 
-## a.	Prepare an excel(csv) file {-}
+### a.	Prepare the hospital-fat-by-age(csv) file, save it and load the project  working directory {-}
 ```{r echo=TRUE}
 setwd("D:/RIT/prof740welcome/week2/Lab")
 ```
-## b.	Import the dataset (file) {-}
+### b.	Import the dataset (hospital-fat-by-age.csv) {-}
 ```{r echo=TRUE}
 data <- read.csv('hospital-fat-by-age.csv')
 ```
-## c.	Read the file {-}
+### c.	Read the imported(hospital-fat-by-age.csv) {-}
 ```{r echo=TRUE}
  View(data)
 ```
-## d.	Calculate and comment the dataset (how many observations and types of variables) {-}
+### d.	Calculate and comment the dataset (how many observations and types of variables) {-}
 ```{r echo=TRUE}
  # To calculate the number of observations
 nrow(data) 
 # To find the types of variables
 str(data) # 'Age' is of int type and 'Fat' is of num type 
 ```
-## e.	Calculate the mean and median of Age and Fat {-}
+### e.	Calculate the mean and median of Age and Fat {-}
 ```{r echo=TRUE}
- # Calculating mean
+# Calculating mean
 mean(data$AGE) # 40.67
 mean(data$FAT) # 26
 # Calculating median
 median(data$AGE)  # 44
 median(data$FAT)  # 27.3
 ```
-## f.	Draw the plot command i.e(plot (name of dataset$variable1, name of dataset$variable2). Is the similar with the scatterplot? {-}
+### f.	Draw the plot command i.e(plot (name of dataset$variable1, name of dataset$variable2). Is the similar with the scatterplot? {-}
 ```{r echo=TRUE}
- plot(data$AGE, data$FAT, xlab = 'AGE', ylab = 'FAT', main = 'Plot command')
- #Yes, it is similar to a scatter plot between Age and Fat
+ plot(data$AGE, data$FAT, xlab = 'AGE', ylab = 'FAT', main = 'Plot of AGE and FAT')
+ #Is the similar with the scatterplot? Yes, it is similar.
 ```
-## g.	Draw the histogram for Age and Fat variables {-}
+### g.	Draw the histogram for Age and Fat variables {-}
 ```{r echo=TRUE}
 # Histogram for Age
 hist(data$AGE, xlab = 'AGE', main = 'Histogram of AGE')
 # Histogram for Fat
 hist(data$FAT, xlab = 'FAT', main = 'Histogram of FAT')
 ```
-## h.	Draw a scatter plot for Age and Fat variables {-}
+### h.	Draw a scatter plot for Age and Fat variables {-}
 ```{r echo=TRUE}
- library(ggplot2)
+#install.packages('ggplot2')
+library(ggplot2)
 ggplot(data, aes(x = AGE, y = FAT)) + geom_point(size=2) + ggtitle("Scatter plot of AGE and FAT")
 ```
 
